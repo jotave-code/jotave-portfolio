@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Javier Vidal</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -18,8 +18,8 @@
     --text-dim: #4a5568;
     --border: rgba(100,255,218,0.08);
     --border-accent: rgba(100,255,218,0.3);
-    --serif: 'DM Serif Display', Georgia, serif;
-    --mono: 'DM Mono', monospace;
+    --serif: 'Open Sans', sans-serif;
+    --mono: 'Open Sans', sans-serif;
   }
   html { scroll-behavior: smooth; }
   body { background: var(--navy); color: var(--text); font-family: var(--mono); font-size: 14px; line-height: 1.7; overflow-x: hidden; }
@@ -48,23 +48,35 @@
 
   /* Hero */
   #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 5rem; }
-  .hero-tag { display: inline-block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--border-accent); background: var(--accent-dim); padding: 0.35rem 0.9rem; border-radius: 2rem; margin-bottom: 1.8rem; animation: fadeUp 0.7s ease both; }
-  .hero-name { font-family: var(--serif); font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.05; color: var(--text); margin-bottom: 0.4rem; animation: fadeUp 0.7s 0.1s ease both; }
-  .hero-name em { font-style: italic; color: var(--accent); }
-  .hero-title { font-family: var(--serif); font-size: clamp(1.1rem, 3vw, 1.6rem); color: var(--text-muted); font-style: italic; margin-bottom: 2rem; animation: fadeUp 0.7s 0.2s ease both; }
-  .hero-desc { max-width: 520px; color: var(--text-muted); font-size: 13.5px; line-height: 1.85; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.3s ease both; }
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.4s ease both; }
-  .btn { display: inline-block; padding: 0.75rem 1.8rem; border-radius: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-primary { background: transparent; color: var(--accent); font-weight: 500; border: 1px solid var(--accent); }
+
+  /* Terminal */
+  .terminal { background: var(--navy-2); border: 1px solid var(--border-accent); border-radius: 10px; overflow: hidden; width: 100%; max-width: 680px; animation: fadeUp 0.8s ease both; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(100,255,218,0.05); }
+  .terminal-bar { background: var(--navy-3); padding: 0.7rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--border); }
+  .terminal-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .terminal-title { font-size: 11px; color: var(--text-dim); margin-left: auto; margin-right: auto; letter-spacing: 0.06em; font-family: 'Courier New', monospace; }
+  .terminal-body { padding: 1.5rem 1.5rem 2rem; font-family: 'Courier New', monospace; font-size: 13.5px; line-height: 1.9; min-height: 260px; }
+  .terminal-line { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.1rem; }
+  .terminal-prompt { color: var(--accent); font-weight: 700; flex-shrink: 0; user-select: none; }
+  .terminal-prompt .at { color: var(--text-muted); }
+  .terminal-prompt .host { color: #c792ea; }
+  .terminal-cmd { color: var(--text); }
+  .terminal-cursor { color: var(--accent); animation: blink 1s step-end infinite; line-height: 1; }
+  .t-output { padding-left: 0; color: var(--text-muted); margin-bottom: 0.1rem; opacity: 0; transition: opacity 0.35s ease; }
+  .t-output.show { opacity: 1; }
+  .t-output .key { color: var(--text-dim); }
+  .t-output .val { color: var(--accent); }
+  .t-output .val-white { color: var(--text); }
+  .t-output .comment { color: #546e7a; font-style: italic; }
+  .t-blank { height: 0.6rem; }
+  .t-cta { margin-top: 1.4rem; opacity: 0; transition: opacity 0.4s ease; }
+  .t-cta.show { opacity: 1; }
+  .btn { display: inline-block; padding: 0.65rem 1.6rem; border-radius: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-primary { background: transparent; color: var(--accent); font-weight: 600; border: 1px solid var(--accent); font-family: 'Courier New', monospace; font-size: 13px; letter-spacing: 0.04em; }
   .btn-primary:hover { background: var(--accent-dim); }
-  .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--text-dim); font-size: 11px; letter-spacing: 0.1em; animation: fadeIn 1s 1.2s ease both; }
-  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
   .section-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
-  .section-title { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text); margin-bottom: 3.5rem; line-height: 1.1; }
+  .section-title { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300; color: var(--text); margin-bottom: 3.5rem; line-height: 1.1; }
 
   /* About */
   .about-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: start; max-width: 600px; }
@@ -101,7 +113,7 @@
   .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent); opacity: 0.5; }
   .exp-bullets li strong { color: var(--text); font-weight: 500; }
   .exp-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.1rem; }
-  .exp-tag { font-size: 11px; padding: 0.25rem 0.65rem; background: var(--navy-3); color: var(--text-dim); border-radius: 3px; border: 1px solid var(--border); letter-spacing: 0.04em; }
+  .exp-tag { font-size: 11px; padding: 0.3rem 0.75rem; background: var(--accent-dim); color: var(--accent); border-radius: 3px; border: 1px solid var(--border-accent); letter-spacing: 0.06em; }
 
   /* Education */
   .edu-card { background: var(--navy-3); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 4rem; transition: border-color 0.2s; }
@@ -130,7 +142,9 @@
   .reveal.visible { opacity: 1; transform: none; }
 
   @media (max-width: 640px) {
-    .nav-links { gap: 1.25rem; }
+    .nav-logo { font-size: 0.95rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 10px; letter-spacing: 0.06em; }
     .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .edu-card { flex-direction: column; }
     .edu-meta { text-align: left; }
@@ -143,8 +157,8 @@
 
 <nav>
   <div class="container">
-    <a class="nav-logo" href="#hero">Jotave<span>.</span></a>
     <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -156,21 +170,16 @@
 <!-- HERO -->
 <section id="hero">
   <div class="container" style="position: relative; width: 100%;">
-    <div class="hero-tag">Open to opportunities</div>
-    <h1 class="hero-name">Javier<br><em>Vidal</em></h1>
-    <p class="hero-title">Software Engineer @ AWS</p>
-    <p class="hero-desc">
-      I build distributed systems and cloud-native solutions at Amazon Web Services,
-      reducing operational toil, improving data reliability, and scaling services
-      to millions of users.
-    </p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#contact">Get in touch</a>
-      <a class="btn btn-ghost" href="#experience">View experience</a>
-    </div>
-    <div class="scroll-hint">
-      <div class="scroll-line"></div>
-      scroll
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dot" style="background:#ff5f57"></span>
+        <span class="terminal-dot" style="background:#febc2e"></span>
+        <span class="terminal-dot" style="background:#28c840"></span>
+        <span class="terminal-title">jotave — bash</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <!-- lines injected by JS -->
+      </div>
     </div>
   </div>
 </section>
@@ -216,8 +225,8 @@
         <div class="skill-chip">Python</div>
         <div class="skill-chip">MySQL</div>
         <div class="skill-chip">NoSQL</div>
-        <div class="skill-chip">AWS Services</div>
-        <div class="skill-chip">AWS CDK</div>
+        <div class="skill-chip">AWS</div>
+        <div class="skill-chip">AI Agents</div>
       </div>
     </div>
   </div>
@@ -239,7 +248,7 @@
           <span class="exp-company">Amazon Web Services</span>
           <span class="exp-period">Dec 2021 — Present</span>
         </div>
-        <div class="exp-role">Software Engineer II &nbsp;·&nbsp; New York, New York</div>
+        <div class="exp-role">Software Engineer II &nbsp;·&nbsp; New York, NY</div>
         <ul class="exp-bullets">
           <li>Designed and led a continuous monitoring service that detected whether in-scope AWS accounts had the correct AWS Config rules to handle customer data — eliminating <strong>40 hours</strong> of manual weekly effort.</li>
           <li>Built an on-call CLI tool for AWS S3 file deletion, Athena table rollback, and customer notification of bad data ingestion — cutting customer-impact response time by <strong>50%</strong>.</li>
@@ -359,7 +368,86 @@
     starsEl.appendChild(s);
   }
 
-  // Scroll reveal
+  // Terminal typewriter — full hero
+  const body = document.getElementById('terminal-body');
+
+  function el(tag, cls, html) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html) e.innerHTML = html;
+    return e;
+  }
+
+  function addPromptLine(cmdText, callback) {
+    const line = el('div', 'terminal-line');
+    const prompt = el('span', 'terminal-prompt', '$');
+    const cmdSpan = el('span', 'terminal-cmd');
+    const cursor = el('span', 'terminal-cursor', '▋');
+    line.appendChild(prompt);
+    line.appendChild(document.createTextNode(' '));
+    line.appendChild(cmdSpan);
+    line.appendChild(cursor);
+    body.appendChild(line);
+
+    let i = 0;
+    function type() {
+      if (i < cmdText.length) {
+        cmdSpan.textContent += cmdText[i++];
+        setTimeout(type, 75);
+      } else {
+        cursor.remove();
+        setTimeout(callback, 300);
+      }
+    }
+    setTimeout(type, 200);
+  }
+
+  function addOutput(lines, callback) {
+    let i = 0;
+    function next() {
+      if (i >= lines.length) { setTimeout(callback, 250); return; }
+      const row = el('div', 't-output', lines[i++]);
+      body.appendChild(row);
+      requestAnimationFrame(() => requestAnimationFrame(() => row.classList.add('show')));
+      setTimeout(next, 180);
+    }
+    next();
+  }
+
+  function addBlank() { body.appendChild(el('div', 't-blank')); }
+
+  function runSequence() {
+    // Command 1: whoami
+    addPromptLine('whoami', () => {
+      addOutput([
+        '<span class="val-white">Javier Vidal</span>',
+        '<span class="val-white">Software Engineer @ AWS · New York, NY</span>',
+      ], () => {
+        addBlank();
+        // Command 2: cat interests.txt
+        addPromptLine('cat interests.txt', () => {
+          addOutput([
+            '<span class="val-white">distributed systems, cloud infrastructure,</span>',
+            '<span class="val-white">and the occasional bug I can\'t stop thinking about</span>',
+          ], () => {
+            addBlank();
+            // Final blinking cursor
+            const finalLine = el('div', 'terminal-line');
+            const prompt = el('span', 'terminal-prompt', '$');
+            const cursor = el('span', 'terminal-cursor', '▋');
+            finalLine.appendChild(prompt);
+            finalLine.appendChild(document.createTextNode(' '));
+            finalLine.appendChild(cursor);
+            body.appendChild(finalLine);
+          });
+        });
+      });
+    });
+  }
+
+  setTimeout(runSequence, 500);
+
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
